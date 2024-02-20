@@ -1,4 +1,10 @@
 import { InvalidParameterError } from "../erros/InvalidParameterError";
+import {
+  IMachineSteps,
+  IStates,
+  ISteps,
+  ITransitions,
+} from "../protocols/general";
 
 export class MachineSteps implements IMachineSteps {
   states: IStates;

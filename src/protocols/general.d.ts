@@ -2,15 +2,15 @@ type ITransitions = { [key: string]: { [key: string]: string } };
 
 type IStates = string[];
 
-interface ISteps {
+export interface ISteps {
   name: string;
   transitions: { [key: string]: string };
 }
 
-interface IMachineSteps {
+export interface IMachineSteps {
   getMachineSteps(): ISteps[];
 }
 
-interface IModuleThree {
+export interface IModuleThree {
   run(input: string): string;
 }

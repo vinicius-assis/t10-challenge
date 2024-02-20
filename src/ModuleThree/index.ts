@@ -1,6 +1,7 @@
 import { MachineSteps } from "../MachineSteps";
 import { InvalidInputError } from "../erros/InvalidInputError";
 import { InvalidParameterError } from "../erros/InvalidParameterError";
+import { IModuleThree, IStates, ITransitions } from "../protocols/general";
 
 export class ModuleThree implements IModuleThree {
   states: IStates;
