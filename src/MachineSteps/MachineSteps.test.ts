@@ -1,10 +1,5 @@
 import { MachineSteps } from ".";
-
-const TRANSITIONS = {
-  A: { "0": "A", "1": "B" },
-  B: { "0": "C", "1": "A" },
-  C: { "0": "B", "1": "C" },
-};
+import { STEPS, TRANSITIONS } from "../utils/constants";
 
 describe("MachineSteps", () => {
   test("should throw an error if no valid states is provided", () => {
@@ -20,7 +15,18 @@ describe("MachineSteps", () => {
   });
 
   test("should getMachineSteps return steps in correctly format", () => {
-    const sut = new MachineSteps(["A", "B", "C"], TRANSITIONS);
+    const sut = new MachineSteps(STEPS, TRANSITIONS);
+    const expectedMachineSteps = [
+      { name: "A", transitions: { "0": "A", "1": "B" } },
+      { name: "B", transitions: { "0": "C", "1": "A" } },
+      { name: "C", transitions: { "0": "B", "1": "C" } },
+    ];
+
+    expect(sut.getMachineSteps()).toEqual(expectedMachineSteps);
+  });
+
+  test("should getMachineSteps return steps in correctly format", () => {
+    const sut = new MachineSteps(STEPS, TRANSITIONS);
     const expectedMachineSteps = [
       { name: "A", transitions: { "0": "A", "1": "B" } },
       { name: "B", transitions: { "0": "C", "1": "A" } },
