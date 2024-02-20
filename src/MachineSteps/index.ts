@@ -1,9 +1,7 @@
-type ITransitions = { [key: string]: { [key: string]: string } };
-
-export class MachineSteps {
-  states: string[];
+export class MachineSteps implements IMachineSteps {
+  states: IStates;
   transitions: ITransitions;
-  constructor(states: string[], transitions: ITransitions) {
+  constructor(states: IStates, transitions: ITransitions) {
     if (!states || !states.length) {
       throw new Error("Invalid states parameter");
     }
@@ -16,7 +14,7 @@ export class MachineSteps {
     this.transitions = transitions;
   }
 
-  getMachineSteps(): any {
+  getMachineSteps(): ISteps[] {
     return this.states.map((state) => ({
       name: state,
       transitions: this.transitions[state],
