@@ -2,6 +2,7 @@ import { ModuleThree } from ".";
 import {
   ACCEPT_STATES,
   ALPHABET,
+  ALPHABET2,
   INITIAL_STATE,
   STATES,
   STATES2,
@@ -76,5 +77,29 @@ describe("ModuleThree", () => {
     );
 
     expect(sut.run("100")).toBe("Input: '100', Output: 'B'");
+  });
+
+  test(`should run throw an error if states and transitions parameters are incompatible`, () => {
+    const sut = new ModuleThree(
+      STATES2,
+      TRANSITIONS,
+      ALPHABET,
+      INITIAL_STATE,
+      ACCEPT_STATES
+    );
+
+    expect(() => sut.run("100")).toThrow("Invalid parameter");
+  });
+
+  test(`should run throw an error if input ins't include on alphabet`, () => {
+    const sut = new ModuleThree(
+      STATES,
+      TRANSITIONS,
+      ALPHABET2,
+      INITIAL_STATE,
+      ACCEPT_STATES
+    );
+
+    expect(() => sut.run("100")).toThrow("Invalid input element: 1");
   });
 });

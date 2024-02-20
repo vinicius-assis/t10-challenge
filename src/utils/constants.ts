@@ -6,9 +6,7 @@ export const TRANSITIONS = {
 
 export const STATES = ["A", "B", "C"];
 export const ACCEPT_STATES = ["A", "B", "C"];
-
 export const INITIAL_STATE = "A";
-
 export const ALPHABET = ["0", "1"];
 
 export const TRANSITIONS2 = {
@@ -18,3 +16,5 @@ export const TRANSITIONS2 = {
 };
 
 export const STATES2 = ["J", "K", "8"];
+export const ACCEPT_STATES2 = ["J", "K", "8"];
+export const ALPHABET2 = ["5", "7"];
