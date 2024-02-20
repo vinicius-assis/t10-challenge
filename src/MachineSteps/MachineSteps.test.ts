@@ -1,5 +1,5 @@
 import { MachineSteps } from ".";
-import { STEPS, STEPS2, TRANSITIONS, TRANSITIONS2 } from "../utils/constants";
+import { STATES, STATES2, TRANSITIONS, TRANSITIONS2 } from "../utils/constants";
 
 describe("MachineSteps", () => {
   test("should throw an error if no valid states is provided", () => {
@@ -15,7 +15,7 @@ describe("MachineSteps", () => {
   });
 
   test("should getMachineSteps return steps in correctly format", () => {
-    const sut = new MachineSteps(STEPS, TRANSITIONS);
+    const sut = new MachineSteps(STATES, TRANSITIONS);
     const expectedMachineSteps = [
       { name: "A", transitions: { "0": "A", "1": "B" } },
       { name: "B", transitions: { "0": "C", "1": "A" } },
@@ -26,7 +26,7 @@ describe("MachineSteps", () => {
   });
 
   test("should getMachineSteps return steps based on entries parameters", () => {
-    const sut = new MachineSteps(STEPS2, TRANSITIONS2);
+    const sut = new MachineSteps(STATES2, TRANSITIONS2);
     const expectedMachineSteps = [
       { name: "J", transitions: { "0": "J", "1": "K" } },
       { name: "K", transitions: { "0": "8", "1": "J" } },

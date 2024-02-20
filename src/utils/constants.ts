@@ -4,7 +4,7 @@ export const TRANSITIONS = {
   C: { "0": "B", "1": "C" },
 };
 
-export const STEPS = ["A", "B", "C"];
+export const STATES = ["A", "B", "C"];
 
 export const TRANSITIONS2 = {
   J: { "0": "J", "1": "K" },
@@ -12,4 +12,4 @@ export const TRANSITIONS2 = {
   8: { "0": "K", "1": "8" },
 };
 
-export const STEPS2 = ["J", "K", "8"];
+export const STATES2 = ["J", "K", "8"];
