@@ -6,6 +6,8 @@ export const TRANSITIONS = {
 
 export const STATES = ["A", "B", "C"];
 
+export const INITIAL_STATE = "A";
+
 export const ALPHABET = ["0", "1"];
 
 export const TRANSITIONS2 = {
