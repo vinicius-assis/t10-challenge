@@ -1,5 +1,6 @@
 import { ModuleThree } from ".";
 import {
+  ACCEPT_STATES,
   ALPHABET,
   INITIAL_STATE,
   STATES,
@@ -9,25 +10,33 @@ import {
 describe("ModuleThree", () => {
   test("should throw an error if no valid states parameter is provided", () => {
     expect(
-      () => new ModuleThree([], TRANSITIONS, ALPHABET, INITIAL_STATE)
+      () =>
+        new ModuleThree([], TRANSITIONS, ALPHABET, INITIAL_STATE, ACCEPT_STATES)
     ).toThrow("Invalid states parameter");
   });
 
   test("should throw an error if no transitions parameter is provided", () => {
-    expect(() => new ModuleThree(STATES, {}, ALPHABET, INITIAL_STATE)).toThrow(
-      "Invalid transitions parameter"
-    );
+    expect(
+      () => new ModuleThree(STATES, {}, ALPHABET, INITIAL_STATE, ACCEPT_STATES)
+    ).toThrow("Invalid transitions parameter");
   });
 
   test("should throw an error if no alphabet parameter is provided", () => {
     expect(
-      () => new ModuleThree(STATES, TRANSITIONS, [], INITIAL_STATE)
+      () =>
+        new ModuleThree(STATES, TRANSITIONS, [], INITIAL_STATE, ACCEPT_STATES)
     ).toThrow("Invalid alphabet parameter");
   });
 
   test("should throw an error if no initialState parameter is provided", () => {
-    expect(() => new ModuleThree(STATES, TRANSITIONS, ALPHABET, "")).toThrow(
-      "Invalid initialState parameter"
-    );
+    expect(
+      () => new ModuleThree(STATES, TRANSITIONS, ALPHABET, "", ACCEPT_STATES)
+    ).toThrow("Invalid initialState parameter");
+  });
+
+  test("should throw an error if no acceptStates parameter is provided", () => {
+    expect(
+      () => new ModuleThree(STATES, TRANSITIONS, ALPHABET, INITIAL_STATE, [])
+    ).toThrow("Invalid acceptStates parameter");
   });
 });

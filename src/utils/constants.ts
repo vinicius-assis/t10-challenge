@@ -5,6 +5,7 @@ export const TRANSITIONS = {
 };
 
 export const STATES = ["A", "B", "C"];
+export const ACCEPT_STATES = ["A", "B", "C"];
 
 export const INITIAL_STATE = "A";
 
