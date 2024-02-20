@@ -58,9 +58,13 @@ export class ModuleThree {
       if (!this.alphabet.includes(element)) {
         throw new InvalidInputError(element);
       }
+
       const state = steps.find(
         (step) => step.name === currentState?.transitions[element]
       );
+      if (state && !this.acceptStates.includes(state.name)) {
+        throw new Error("Invalid output value");
+      }
       if (!state) {
         throw new InvalidParameterError();
       }
