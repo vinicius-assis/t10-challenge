@@ -15,26 +15,26 @@ describe("ModuleThree", () => {
     ).toThrow("Invalid states parameter");
   });
 
-  test("should throw an error if no transitions parameter is provided", () => {
+  test("should throw an error if no valid transitions parameter is provided", () => {
     expect(
       () => new ModuleThree(STATES, {}, ALPHABET, INITIAL_STATE, ACCEPT_STATES)
     ).toThrow("Invalid transitions parameter");
   });
 
-  test("should throw an error if no alphabet parameter is provided", () => {
+  test("should throw an error if no valid alphabet parameter is provided", () => {
     expect(
       () =>
         new ModuleThree(STATES, TRANSITIONS, [], INITIAL_STATE, ACCEPT_STATES)
     ).toThrow("Invalid alphabet parameter");
   });
 
-  test("should throw an error if no initialState parameter is provided", () => {
+  test("should throw an error if no valid initialState parameter is provided", () => {
     expect(
       () => new ModuleThree(STATES, TRANSITIONS, ALPHABET, "", ACCEPT_STATES)
     ).toThrow("Invalid initialState parameter");
   });
 
-  test("should throw an error if no acceptStates parameter is provided", () => {
+  test("should throw an error if no valid acceptStates parameter is provided", () => {
     expect(
       () => new ModuleThree(STATES, TRANSITIONS, ALPHABET, INITIAL_STATE, [])
     ).toThrow("Invalid acceptStates parameter");
