@@ -6,6 +6,8 @@ export const TRANSITIONS = {
 
 export const STATES = ["A", "B", "C"];
 
+export const ALPHABET = ["0", "1"];
+
 export const TRANSITIONS2 = {
   J: { "0": "J", "1": "K" },
   K: { "0": "8", "1": "J" },
