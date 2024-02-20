@@ -39,4 +39,10 @@ export class ModuleThree {
     this.initialState = initialState;
     this.acceptStates = acceptStates;
   }
+
+  run(input: string): any {
+    if (!input?.length) {
+      throw new InvalidParameterError();
+    }
+  }
 }
