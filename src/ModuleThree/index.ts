@@ -4,8 +4,17 @@ export class ModuleThree {
   states: IStates;
   transitions: ITransitions;
   alphabet: string[];
+  initialState: string;
 
-  constructor(states: IStates, transitions: ITransitions, alphabet: string[]) {
+  constructor(
+    states: IStates,
+    transitions: ITransitions,
+    alphabet: string[],
+    initialState: string
+  ) {
+    if (!initialState?.length) {
+      throw new InvalidParameterError("initialState");
+    }
     if (!states || !states.length) {
       throw new InvalidParameterError("states");
     }
@@ -21,5 +30,6 @@ export class ModuleThree {
     this.states = states;
     this.transitions = transitions;
     this.alphabet = alphabet;
+    this.initialState = initialState;
   }
 }
