@@ -1,3 +1,4 @@
+import { MachineSteps } from "../MachineSteps";
 import { InvalidParameterError } from "../erros/InvalidParameterError";
 
 export class ModuleThree {
@@ -44,5 +45,21 @@ export class ModuleThree {
     if (!input?.length) {
       throw new InvalidParameterError();
     }
+
+    const steps = new MachineSteps(
+      this.states,
+      this.transitions
+    ).getMachineSteps();
+
+    const initialState = steps.find((step) => step.name === this.initialState);
+    let currentState = initialState;
+    for (let element of input) {
+      const state = steps.find(
+        (step) => step.name === currentState?.transitions[element]
+      );
+      currentState = state;
+    }
+
+    return `Input: '${input}', Output: '${currentState?.name}'`;
   }
 }
