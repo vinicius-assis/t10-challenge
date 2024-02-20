@@ -24,15 +24,4 @@ describe("MachineSteps", () => {
 
     expect(sut.getMachineSteps()).toEqual(expectedMachineSteps);
   });
-
-  test("should getMachineSteps return steps in correctly format", () => {
-    const sut = new MachineSteps(STEPS, TRANSITIONS);
-    const expectedMachineSteps = [
-      { name: "A", transitions: { "0": "A", "1": "B" } },
-      { name: "B", transitions: { "0": "C", "1": "A" } },
-      { name: "C", transitions: { "0": "B", "1": "C" } },
-    ];
-
-    expect(sut.getMachineSteps()).toEqual(expectedMachineSteps);
-  });
 });
