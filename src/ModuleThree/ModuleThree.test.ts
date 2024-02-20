@@ -39,4 +39,16 @@ describe("ModuleThree", () => {
       () => new ModuleThree(STATES, TRANSITIONS, ALPHABET, INITIAL_STATE, [])
     ).toThrow("Invalid acceptStates parameter");
   });
+
+  test("should run() throw an error if no valid parameter is provided", () => {
+    const sut = new ModuleThree(
+      STATES,
+      TRANSITIONS,
+      ALPHABET,
+      INITIAL_STATE,
+      ACCEPT_STATES
+    );
+
+    expect(() => sut.run("")).toThrow("Invalid parameter");
+  });
 });
