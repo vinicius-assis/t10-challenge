@@ -1,6 +1,7 @@
 import { ModuleThree } from ".";
 import {
   ACCEPT_STATES,
+  ACCEPT_STATES2,
   ALPHABET,
   ALPHABET2,
   INITIAL_STATE,
@@ -101,5 +102,17 @@ describe("ModuleThree", () => {
     );
 
     expect(() => sut.run("100")).toThrow("Invalid input element: 1");
+  });
+
+  test(`should run throw an error if output ins't include on acceptStates`, () => {
+    const sut = new ModuleThree(
+      STATES,
+      TRANSITIONS,
+      ALPHABET,
+      INITIAL_STATE,
+      ACCEPT_STATES2
+    );
+
+    expect(() => sut.run("100")).toThrow("Invalid output value");
   });
 });
