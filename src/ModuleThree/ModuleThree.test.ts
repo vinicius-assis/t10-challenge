@@ -113,6 +113,6 @@ describe("ModuleThree", () => {
       ACCEPT_STATES2
     );
 
-    expect(() => sut.run("100")).toThrow("Invalid output value");
+    expect(() => sut.run("100")).toThrow("Invalid output value: B");
   });
 });

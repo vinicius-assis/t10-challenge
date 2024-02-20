@@ -1,5 +1,6 @@
 import { MachineSteps } from "../MachineSteps";
 import { InvalidInputError } from "../erros/InvalidInputError";
+import { InvalidOutputError } from "../erros/InvalidOutputError";
 import { InvalidParameterError } from "../erros/InvalidParameterError";
 import { IModuleThree, IStates, ITransitions } from "../protocols/general";
 
@@ -65,7 +66,7 @@ export class ModuleThree implements IModuleThree {
       );
 
       if (state && !this.acceptStates.includes(state.name)) {
-        throw new Error("Invalid output value");
+        throw new InvalidOutputError(state.name);
       }
 
       if (!state) {
@@ -80,7 +81,7 @@ export class ModuleThree implements IModuleThree {
   run(input: string): string {
     const state = this.getFinalState(input);
     if (!state) {
-      throw new Error("Invalid output value");
+      throw new InvalidOutputError();
     }
 
     return `Input: '${input}', Output: '${state}'`;
