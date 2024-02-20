@@ -17,10 +17,9 @@ export class MachineSteps {
   }
 
   getMachineSteps(): any {
-    return [
-      { name: "A", transitions: { "0": "A", "1": "B" } },
-      { name: "B", transitions: { "0": "C", "1": "A" } },
-      { name: "C", transitions: { "0": "B", "1": "C" } },
-    ];
+    return this.states.map((state) => ({
+      name: state,
+      transitions: this.transitions[state],
+    }));
   }
 }
