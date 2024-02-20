@@ -4,7 +4,9 @@ import {
   ALPHABET,
   INITIAL_STATE,
   STATES,
+  STATES2,
   TRANSITIONS,
+  TRANSITIONS2,
 } from "../utils/constants";
 
 describe("ModuleThree", () => {
@@ -50,5 +52,29 @@ describe("ModuleThree", () => {
     );
 
     expect(() => sut.run("")).toThrow("Invalid parameter");
+  });
+
+  test(`should run('10') return 'Input: "10", Output: "C"'`, () => {
+    const sut = new ModuleThree(
+      STATES,
+      TRANSITIONS,
+      ALPHABET,
+      INITIAL_STATE,
+      ACCEPT_STATES
+    );
+
+    expect(sut.run("10")).toBe("Input: '10', Output: 'C'");
+  });
+
+  test(`should run('100') return 'Input: "100", Output: "B"'`, () => {
+    const sut = new ModuleThree(
+      STATES,
+      TRANSITIONS,
+      ALPHABET,
+      INITIAL_STATE,
+      ACCEPT_STATES
+    );
+
+    expect(sut.run("100")).toBe("Input: '100', Output: 'B'");
   });
 });
