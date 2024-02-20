@@ -1,9 +1,9 @@
 import { MachineSteps } from ".";
 
 const TRANSITIONS = {
-  S0: { "0": "S0", "1": "S1" },
-  S1: { "0": "S2", "1": "S0" },
-  S2: { "0": "S1", "1": "S2" },
+  A: { "0": "A", "1": "B" },
+  B: { "0": "C", "1": "A" },
+  C: { "0": "B", "1": "C" },
 };
 
 describe("MachineSteps", () => {
@@ -17,5 +17,16 @@ describe("MachineSteps", () => {
     expect(() => new MachineSteps(["A", "B"], {})).toThrow(
       "Invalid transitions parameter"
     );
+  });
+
+  test("should getMachineSteps return steps in correctly format", () => {
+    const sut = new MachineSteps(["A", "B", "C"], TRANSITIONS);
+    const expectedMachineSteps = [
+      { name: "A", transitions: { "0": "A", "1": "B" } },
+      { name: "B", transitions: { "0": "C", "1": "A" } },
+      { name: "C", transitions: { "0": "B", "1": "C" } },
+    ];
+
+    expect(sut.getMachineSteps()).toEqual(expectedMachineSteps);
   });
 });
