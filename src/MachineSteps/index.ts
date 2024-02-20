@@ -1,13 +1,15 @@
+import { InvalidParameterError } from "../erros/InvalidParameterError";
+
 export class MachineSteps implements IMachineSteps {
   states: IStates;
   transitions: ITransitions;
   constructor(states: IStates, transitions: ITransitions) {
     if (!states || !states.length) {
-      throw new Error("Invalid states parameter");
+      throw new InvalidParameterError("states");
     }
 
     if (!transitions || !Object.values(transitions).length) {
-      throw new Error("Invalid transitions parameter");
+      throw new InvalidParameterError("transitions");
     }
 
     this.states = states;
