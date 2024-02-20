@@ -2,7 +2,7 @@ import { MachineSteps } from "../MachineSteps";
 import { InvalidInputError } from "../erros/InvalidInputError";
 import { InvalidParameterError } from "../erros/InvalidParameterError";
 
-export class ModuleThree {
+export class ModuleThree implements IModuleThree {
   states: IStates;
   transitions: ITransitions;
   alphabet: string[];
@@ -42,7 +42,7 @@ export class ModuleThree {
     this.acceptStates = acceptStates;
   }
 
-  run(input: string): any {
+  private getFinalState(input: string): string | undefined {
     if (!input?.length) {
       throw new InvalidParameterError();
     }
@@ -62,15 +62,26 @@ export class ModuleThree {
       const state = steps.find(
         (step) => step.name === currentState?.transitions[element]
       );
+
       if (state && !this.acceptStates.includes(state.name)) {
         throw new Error("Invalid output value");
       }
+
       if (!state) {
         throw new InvalidParameterError();
       }
       currentState = state;
     }
 
-    return `Input: '${input}', Output: '${currentState?.name}'`;
+    return currentState?.name;
+  }
+
+  run(input: string): string {
+    const state = this.getFinalState(input);
+    if (!state) {
+      throw new Error("Invalid output value");
+    }
+
+    return `Input: '${input}', Output: '${state}'`;
   }
 }

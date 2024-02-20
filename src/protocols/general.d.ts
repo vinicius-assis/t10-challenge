@@ -10,3 +10,7 @@ interface ISteps {
 interface IMachineSteps {
   getMachineSteps(): ISteps[];
 }
+
+interface IModuleThree {
+  run(input: string): string;
+}
