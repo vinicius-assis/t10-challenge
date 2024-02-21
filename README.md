@@ -10,11 +10,15 @@ The ModuleThree class implements functionality for a finite state machine define
 import { ModuleThree } from "./ModuleThree";
 
 // Example states, transitions, alphabet, initial state, and accept states
-const states = { A: {}, B: {} };
-const transitions = { A: { a: "B" }, B: { b: "A" } };
-const alphabet = ["a", "b"];
+const states = ["A", "B", "C"];
+const transitions = {
+  A: { 0: "A", 1: "B" },
+  B: { 0: "C", 1: "A" },
+  C: { 0: "B", 1: "C" },
+};
+const alphabet = ["0", "1"];
 const initialState = "A";
-const acceptStates = ["B"];
+const acceptStates = ["A", "B", "C"];
 
 // Create an instance of ModuleThree
 const moduleThree = new ModuleThree(
@@ -26,9 +30,9 @@ const moduleThree = new ModuleThree(
 );
 
 // Run the finite state machine with input
-const output = moduleThree.run("ab");
+const output = moduleThree.run("10");
 
-console.log(output); // Output: Input: 'ab', Output: 'A'
+console.log(output); // Output: Input: 'ab', Output: 'C'
 ```
 
 #### Constructor
@@ -70,8 +74,8 @@ run(input: string): string
 
 ```js
 try {
-  const output = moduleThree.run("ab");
-  console.log(output); // Output: Input: 'ab', Output: 'A'
+  const output = moduleThree.run("100");
+  console.log(output); // Output: Input: 'ab', Output: 'B'
 } catch (error) {
   console.error(error.message);
 }
