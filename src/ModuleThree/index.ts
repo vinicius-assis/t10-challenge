@@ -5,43 +5,22 @@ import { InvalidParameterError } from "../erros/InvalidParameterError";
 import { IModuleThree, IStates, ITransitions } from "../protocols/general";
 
 export class ModuleThree implements IModuleThree {
-  states: IStates;
-  transitions: ITransitions;
-  alphabet: string[];
-  initialState: string;
-  acceptStates: string[];
+  private states: IStates;
+  private transitions: ITransitions;
+  private alphabet: string[];
+  private initialState: string;
+  private acceptStates: string[];
 
-  constructor(
-    states: IStates,
-    transitions: ITransitions,
-    alphabet: string[],
-    initialState: string,
-    acceptStates: string[]
-  ) {
-    if (!initialState?.length) {
-      throw new InvalidParameterError("initialState");
-    }
-    if (!states || !states.length) {
-      throw new InvalidParameterError("states");
-    }
-
-    if (!alphabet || !alphabet.length) {
-      throw new InvalidParameterError("alphabet");
-    }
-
-    if (!acceptStates || !acceptStates.length) {
-      throw new InvalidParameterError("acceptStates");
-    }
-
-    if (!transitions || !Object.values(transitions).length) {
-      throw new InvalidParameterError("transitions");
-    }
-
-    this.states = states;
-    this.transitions = transitions;
-    this.alphabet = alphabet;
-    this.initialState = initialState;
-    this.acceptStates = acceptStates;
+  constructor() {
+    this.states = ["S0", "S1", "S2"];
+    this.alphabet = ["0", "1"];
+    this.initialState = "S0";
+    this.acceptStates = ["S0", "S1", "S2"];
+    this.transitions = {
+      S0: { "0": "S0", "1": "S1" },
+      S1: { "0": "S2", "1": "S0" },
+      S2: { "0": "S1", "1": "S2" },
+    };
   }
 
   private getFinalState(input: string): string | undefined {
@@ -69,9 +48,6 @@ export class ModuleThree implements IModuleThree {
         throw new InvalidOutputError(state.name);
       }
 
-      if (!state) {
-        throw new InvalidParameterError();
-      }
       currentState = state;
     }
 
