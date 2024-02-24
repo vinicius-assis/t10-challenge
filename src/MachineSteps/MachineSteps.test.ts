@@ -4,13 +4,13 @@ import { STATES, STATES2, TRANSITIONS, TRANSITIONS2 } from "../utils/constants";
 describe("MachineSteps", () => {
   test("should throw an error if no valid states is provided", () => {
     expect(() => new MachineSteps([], TRANSITIONS)).toThrow(
-      "Invalid states parameter"
+      "States parameter is missing or empty."
     );
   });
 
   test("should throw an error if no valid transitions is provided", () => {
     expect(() => new MachineSteps(["A", "B"], {})).toThrow(
-      "Invalid transitions parameter"
+      "Invalid Transitions parameter is missing or empty. parameter"
     );
   });
 

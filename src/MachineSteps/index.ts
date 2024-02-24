@@ -7,22 +7,28 @@ import {
 } from "../protocols/general";
 
 export class MachineSteps implements IMachineSteps {
-  states: IStates;
-  transitions: ITransitions;
+  private states: IStates;
+  private transitions: ITransitions;
+
   constructor(states: IStates, transitions: ITransitions) {
-    if (!states || !states.length) {
-      throw new InvalidParameterError("states");
-    }
-
-    if (!transitions || !Object.values(transitions).length) {
-      throw new InvalidParameterError("transitions");
-    }
-
+    this.validateParameters(states, transitions);
     this.states = states;
     this.transitions = transitions;
   }
 
-  getMachineSteps(): ISteps[] {
+  private validateParameters(states: IStates, transitions: ITransitions): void {
+    if (!states || !states.length) {
+      throw new InvalidParameterError("States parameter is missing or empty.");
+    }
+
+    if (!transitions || !Object.keys(transitions).length) {
+      throw new InvalidParameterError(
+        "Transitions parameter is missing or empty."
+      );
+    }
+  }
+
+  public getMachineSteps(): ISteps[] {
     return this.states.map((state) => ({
       name: state,
       transitions: this.transitions[state],
