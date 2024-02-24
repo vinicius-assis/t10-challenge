@@ -1,82 +1,81 @@
 # ModuleThree Documentation
 
-## Overview
+The `ModuleThree` class is a part of a Finite State Machine (FSM) implementation that determines if a binary number is divisible by three and calculates the remainder. It is designed to process input strings consisting of binary digits ("0" and "1") and return a message indicating whether the number is divisible by three and what the remainder is.
 
-The ModuleThree class implements functionality for a finite state machine defined by states, transitions, alphabet, initial state, and accept states.
+## Dependencies
 
-#### Usage
+- `MachineSteps`: A class that manages the steps of the FSM.
+- `InvalidInputError`: A custom error class for invalid input.
+- `InvalidOutputError`: A custom error class for invalid output.
+- `InvalidParameterError`: A custom error class for invalid parameters.
+- `IModuleThree`, `IStates`, `ITransitions`: Interfaces that define the structure of the module and the FSM.
 
-```js
-import { ModuleThree } from "./ModuleThree";
+## Properties
 
-// Example states, transitions, alphabet, initial state, and accept states
-const states = ["A", "B", "C"];
-const transitions = {
-  A: { 0: "A", 1: "B" },
-  B: { 0: "C", 1: "A" },
-  C: { 0: "B", 1: "C" },
-};
-const alphabet = ["0", "1"];
-const initialState = "A";
-const acceptStates = ["A", "B", "C"];
+- `states`: An array of strings representing the states of the FSM (`["S0", "S1", "S2"]`).
+- `transitions`: An object representing the state transitions based on input.
+- `alphabet`: An array of strings representing the valid input symbols (`["0", "1"]`).
+- `initialState`: A string representing the initial state of the FSM (`"S0"`).
+- `acceptStates`: An array of strings representing the states that are considered valid for acceptance.
 
-// Create an instance of ModuleThree
-const moduleThree = new ModuleThree(
-  states,
-  transitions,
-  alphabet,
-  initialState,
-  acceptStates
-);
+## Methods
 
-// Run the finite state machine with input
-const output = moduleThree.run("10");
+### `run(input: string): string`
 
-console.log(output); // Output: Input: 'ab', Output: 'C'
+This is the main method of the `ModuleThree` class. It takes a binary string as input and returns a message indicating whether the number represented by the binary string is divisible by three and what the remainder is.
+
+#### Parameters
+
+- `input`: A string consisting of binary digits ("0" and "1").
+
+#### Returns
+
+- A string message indicating whether the input is divisible by three and the remainder.
+
+#### Example
+
+```typescript
+const moduleThree = new ModuleThree();
+const result = moduleThree.run("101");
+console.log(result); // "101 is not divisible by 3, remainder: 2"
 ```
 
-#### Constructor
+### `calculateFinalState(input: string): string`
 
-```js
-constructor(
-  states: IStates,
-  transitions: ITransitions,
-  alphabet: string[],
-  initialState: string,
-  acceptStates: string[]
-)
+This method calculates the final state of the FSM based on the input string. It is used internally by the `run` method.
+
+#### Parameters
+
+- `input`: A string consisting of binary digits ("0" and "1").
+
+#### Returns
+
+- A string representing the final state of the FSM.
+
+#### Throws
+
+- `InvalidParameterError`: If the input string is empty or null.
+- `InvalidInputError`: If the input string contains characters other than "0" or "1".
+- `InvalidOutputError`: If the final state is not one of the accept states.
+
+## Error Handling
+
+The `ModuleThree` class uses custom error classes to handle invalid inputs, outputs, and parameters:
+
+- `InvalidInputError`: Thrown when the input string contains invalid characters.
+- `InvalidOutputError`: Thrown when the final state is not an accept state or is undefined.
+- `InvalidParameterError`: Thrown when the input string is empty or null.
+
+## Usage
+
+To use the `ModuleThree` class, you need to create an instance of the class and call the `run` method with a binary string as the argument. The method will return a message indicating whether the number is divisible by three and what the remainder is.
+
+```typescript
+const moduleThree = new ModuleThree();
+const result = moduleThree.run("110");
+console.log(result); // "110 is divisible by 3, remainder: 0"
 ```
 
-- states: An object representing the states of the finite state machine.
-- transitions: An object representing the transitions between states based on input symbols.
-- alphabet: An array of strings representing the input alphabet.
-- initialState: A string representing the initial state of the finite state machine.
-- acceptStates: An array of strings representing the accept states of the finite state machine.
+## Conclusion
 
-#### Method
-
-##### run
-
-```js
-run(input: string): string
-```
-
-- input: A string representing the input sequence.
-- Returns: A string representing the output state after processing the input sequence.
-
-#### Exceptions
-
-- Throws InvalidParameterError if any required parameter is missing or invalid.
-- Throws InvalidInputError if the input contains symbols not present in the alphabet.
-- Throws InvalidOutputError if the output state is not valid.
-
-##### Example
-
-```js
-try {
-  const output = moduleThree.run("100");
-  console.log(output); // Output: Input: 'ab', Output: 'B'
-} catch (error) {
-  console.error(error.message);
-}
-```
+The `ModuleThree` class provides a simple and efficient way to determine if a binary number is divisible by three and to calculate the remainder using a Finite State Machine approach. With clear error handling and a straightforward interface, it is easy to integrate into larger projects or use as a standalone module.
